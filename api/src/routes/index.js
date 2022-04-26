@@ -2,7 +2,7 @@ const { Router } = require('express');
 // Importar todos los routers;
 const { Country, Activity } = require('../db');
 const express = require('express');
-const axios = require('axios')
+const axios = require('axios');
 
 const router = Router();
 
@@ -46,35 +46,65 @@ const getApiData = async() => {
                 population: elem.population,
             }
         })
-        // console.log("vamos -- ",created);
     }
 
     return apiInfo;
 };
 
-router.get("/" , async(req, res) => {
-    const myData = await getApiData();
-    console.log(myData);
+const getFromDb = async() => {
+    await getApiData();
+    const data = await Country.findAll();
+    return data;
+};
 
-    // res.status(200).send(myData.stringify)
-    res.status(200).send(myData);
-})
-
-router.get("/test" , async(req, res) => {
-    const myData = await getApiData();
-    console.log(myData);
-
-    // res.status(200).send(myData.stringify)
-    res.status(200).send(myData);
-})
-
+//end-points
 router.get("/countries" , async(req, res) => {
-    const myData = await getApiData();
-    console.log(myData);
+    const { name } = req.query;
+    const myDB = await getFromDb();
+    if (name) {
+        const filteredCountry = myDB.filter(c => c.name.toLowerCase().includes(name.toLowerCase()));
+        filteredCountry.length ? res.status(200).send(filteredCountry) : res.status(404).send("Country not found");
+    }else{ 
+        res.status(200).send(myDB);
+    } 
+});
 
-    // res.status(200).send(myData.stringify)
-    res.status(200).send(myData);
-})
+router.get("/countries/:idCountry" , async(req, res) => {
+    const { idCountry } = req.params;
+    const myDB = await getFromDb();
+    const countryDetails = myDB.filter(coun => coun.id.toLowerCase() === idCountry.toLowerCase());
+
+    countryDetails.length ? res.status(200).send(countryDetails) : res.status(404).send("Country not found");
+});
+
+router.post("/activity", async(req, res) => {
+    let {
+        name,
+        difficulty,
+        duration,
+        season,
+        countries_id
+    } = req.body
+
+    let [activityX, created] = await Activity.findOrCreate({//creamos una fila en activity con estos datos
+        where: {name: name},
+        defaults: {
+            name: name,
+            difficulty: difficulty,
+            duration: duration,
+            season: season
+        }
+    });
+
+    const countryAsso = await Country.findAll( { where: {id: countries_id} } );
+
+    for (let value of countryAsso) {
+        await value.addActivity(activityX.dataValues.id);
+    }
+
+    res.status(200).send("activity created succesfully");
+});
 
 router.use(express.json());
 module.exports = router;
+
