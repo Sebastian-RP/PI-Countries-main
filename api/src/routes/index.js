@@ -53,7 +53,18 @@ const getApiData = async() => {
 
 const getFromDb = async() => {
     await getApiData();
-    const data = await Country.findAll();
+    //relacion entre modelo Country y modelo Activity
+    const data = await Country.findAll({
+        attributes: { exclude: ['createdAt', 'updatedAt', 'country_activity']},
+        include: { 
+            model: Activity,
+            attributes: { exclude: ['createdAt', 'updatedAt'] },
+            through: {
+                attributes: [],
+            },
+        }
+    })
+
     return data;
 };
 
@@ -75,6 +86,20 @@ router.get("/countries/:idCountry" , async(req, res) => {
     const countryDetails = myDB.filter(coun => coun.id.toLowerCase() === idCountry.toLowerCase());
 
     countryDetails.length ? res.status(200).send(countryDetails) : res.status(404).send("Country not found");
+});
+
+router.get("/activity", async(req, res) => {
+    const getActivity = await Activity.findAll({
+        attributes: ["name", "id"]
+    });
+    if (getActivity.length) {
+        res.status(200).send(getActivity);   
+    }else{
+        res.json([{ 
+            id: 000,
+            name: "No hay actividades"
+        }]);
+    }
 });
 
 router.post("/activity", async(req, res) => {
