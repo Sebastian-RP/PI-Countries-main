@@ -15,9 +15,6 @@ export default function DogDetails() {
   const details = useSelector((state) => state.details);
   console.log(details);
 
-  if (details[0]) {
-  }
-
   return (
     <div>
         <div className="left_container">
@@ -35,7 +32,17 @@ export default function DogDetails() {
             <h2>{details[0]?.population}</h2>
         </div>
         <div className="right_container">
-            
+            {
+              details[0]?.activities.map(act => 
+                <div key={act}>
+                  <hr />
+                  <h4>{act.name}</h4>
+                  <h4>{act.difficulty}</h4>
+                  <h4>{act.duration}</h4>
+                  <h4>{act.season}</h4>
+                </div>
+              )
+            }
         </div>
     </div>
   );
