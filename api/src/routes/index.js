@@ -80,7 +80,7 @@ router.get("/countries" , async(req, res) => {
     } 
 });
 
-router.get("/countries/:idCountry" , async(req, res) => {
+router.get("/countries/:idCountry", async(req, res) => {
     const { idCountry } = req.params;
     const myDB = await getFromDb();
     const countryDetails = myDB.filter(coun => coun.id.toLowerCase() === idCountry.toLowerCase());

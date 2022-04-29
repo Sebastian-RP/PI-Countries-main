@@ -26,6 +26,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 countries: action.payload
             }
+        case "GET_COUNTRY_BY_ID":
+            return{
+                ...state,
+                details: action.payload,
+            }
         case "ORDER_BY_NAME":  
             console.log("reducer");
             console.log(action.payload);
@@ -79,6 +84,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 countries: sortedPopulation,
             }
+            //se puede hacer que al ejecutarse la accion llame el valor total de paises
         case "FILTER_BY_CONTINENT": 
             let filterContinent; 
             if (action.payload === "All") {

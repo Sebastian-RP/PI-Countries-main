@@ -64,6 +64,10 @@ function LandingPage() {
 
                 <ActivityFilter allActivities={allActivities} />
 
+                <Link to="/add-activity">
+                    <button>new activity</button>
+                </Link>
+
             </div>
             <h1>andamos piola en el home</h1>
 

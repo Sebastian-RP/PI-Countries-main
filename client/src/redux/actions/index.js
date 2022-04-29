@@ -35,6 +35,20 @@ export function getCountryByName(name) {
     }
 }
 
+export function getByID(idCountry) {
+    return async function(dispatch) {
+        try {
+            let json = await axios.get(`${urlApi}/countries/${idCountry}`);
+            return dispatch({
+                type: "GET_COUNTRY_BY_ID",
+                payload: json.data,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 export function orderByName(order) {
     return{
         type: "ORDER_BY_NAME",
@@ -62,3 +76,11 @@ export function filterByActivity(activity) {
         payload: activity
     }
 }
+
+export const postActivity = (payload) => {
+    return async function() {
+        const res = await axios.post("http://localhost:3001/activity", payload);
+        return res;
+    //   return response.data;
+    };
+  };
