@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getByID } from "../../redux/actions";
 import { Link } from "react-router-dom";
 
-export default function DogDetails() {
+export default function CountryDetails() {
   const dispatch = useDispatch();
   let { id } = useParams();
 
@@ -27,7 +27,7 @@ export default function DogDetails() {
             <h2>{details[0]?.continent}</h2>
             <h2>{details[0]?.capital}</h2>
             <h2>{details[0]?.subregion}</h2>
-            {/* agregar meddida en km puede ser traido con un getter desde la bd */}
+            {/* agregar medida en km puede ser traido con un getter desde la bd */}
             <h2>{details[0] ? details[0].area + " Km2" : ""}</h2>
             <h2>{details[0]?.population}</h2>
         </div>

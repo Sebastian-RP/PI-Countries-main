@@ -7,6 +7,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Card from "../Card/Card";
 import ContinentFilter from "../Continentfilter/Continentfilter";
 import ActivityFilter from "../ActivityFilter/ActivityFilter";
+import Pagination from "../Pagination/Pagination";
 
 import {
     getAllCountries, 
@@ -15,16 +16,28 @@ import {
     orderByPopulation
 } from "../../redux/actions"
 
-function LandingPage() {
+function Home() {
     const dispatch = useDispatch();
-    // const allCountries = useSelector(state => state.allCountries);
     const allActivities = useSelector(state => state.allActivities);
     const countries = useSelector(state => state.countries)
 
     console.log(countries);
 
     // eslint-disable-next-line no-unused-vars
-    const [orden, setOrden] = useState("");
+    const [update, setUpdate] = useState("");
+    const [currentPage, setcurrentPage] = useState(1);
+    const countriesPerPage = 10;
+    const indexOfLastCountry = currentPage * countriesPerPage; //2 * 10 - 1 = 19
+    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage; //20 - 10 - 1= 9
+    //si la pagina actual es 1 muestre los primeros nueve, si no muestre los siguientes 10
+    let currentCountries;
+    currentPage === 1 
+        ? currentCountries = countries.slice(0, 9)
+        : currentCountries = countries.slice(indexOfFirstCountry-1, indexOfLastCountry-1);
+
+    const pagination = (pageNumber) => {
+        setcurrentPage(pageNumber);
+    }
 
     useEffect(() => {
         dispatch(getAllCountries());
@@ -34,14 +47,16 @@ function LandingPage() {
     const handleOrderByName = (e) => {
         e.preventDefault();
         dispatch(orderByName(e.target.value));
-        setOrden(e.target.value);
+        setUpdate(e.target.value);
     };
 
     const handleOrderByPopulation = (e) => {
         e.preventDefault();
         dispatch(orderByPopulation(e.target.value));
-        setOrden(e.target.value);
+        setUpdate(e.target.value);
     };
+
+    console.log(currentCountries.length);
 
     return(
         <div>
@@ -71,9 +86,11 @@ function LandingPage() {
             </div>
             <h1>andamos piola en el home</h1>
 
+            <Pagination coutriesPerPage={countriesPerPage} allCountries={countries.length} pagination={pagination}/>
+
             <div>
                 {
-                    countries.map((el) => {
+                    currentCountries.map((el) => {
                         return(
                             <div key={el.id}>
                                 <Link to={`/country-detail/${el.id}`}>
@@ -90,4 +107,4 @@ function LandingPage() {
     )
 }
 
-export default LandingPage;
+export default Home;

@@ -22,6 +22,8 @@ export default function FormAddActivity() {
 
     const [enableButt, setEnableButt] = useState(true);
 
+    
+
     useEffect(() => {
         console.log(errorForm.countries);
         if (errorForm.name.length > 0 || errorForm.countries.length > 0) {
@@ -61,7 +63,7 @@ export default function FormAddActivity() {
                 return(
                     setErrorForm({
                         ...errorForm,
-                        name: "this field is required"
+                        name: "this field is required",
                     })
                 )
             }
