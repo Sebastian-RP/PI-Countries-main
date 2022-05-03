@@ -1,9 +1,53 @@
 header{
-
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    background: none;
+    margin: 0 5%;
+    padding-bottom: 2rem;
+    padding-top: 0.5rem;
 }
 
 header .logo{
-    
+    color: white;
+    height: 108%;
+    width: 125px;
+    margin: 0.3rem 0;
+    background-image: url("./images/logo.jpg");
+    background-size: cover;
+    border-radius: 4px;
+    background-position-y: center;
+}
+
+.container_filters{
+    /* background-color: red; */
+}
+
+.container_filters select{
+    height: 30px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.15rem;
+    color: #501f01;
+    background-color: #ecbc48;
+    cursor: pointer;
+}
+
+.button_to_new_country{
+    border: none;
+    padding: 0.5rem;
+    color: #501f01;
+    background-color: #ecbc48;
+    border-radius: 8px;
+    width: auto;
+    box-shadow: 5px 3px 5px 0.5px rgba(0,0,0,0.6);
+}
+
+.button_to_new_country:hover{
+    cursor: pointer;
+    border: none;
+    box-shadow: 5px 3px 5px 0.5px rgba(0,0,0,0);
 }
 
 .cards_pagination_container{

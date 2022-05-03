@@ -1,7 +1,28 @@
 .pagination_nav{
+    display: flex;
+    justify-content: center;
+
+    padding-bottom: 5rem;
 }
 
-.pagination_ul{}
+.pagination_nav div{
+    padding: 0;
+    margin: 0;
+}
+
+.button_go_pages{
+    padding: 0 0.5rem;
+    background-color: #dcd7c9;
+    border-radius: 5px;
+}
+
+.button_go_pages:hover{
+    cursor: pointer;
+    background-color: #ecbc48;
+    color: white;
+}
+
+/* .pagination_ul{} */
 
 .pagination_li{
     list-style: none;
@@ -9,3 +30,17 @@
     margin: 0.2rem;
     text-align: center;
 }
+
+.pagination_li button{
+    padding: 0.5rem;
+    color: #501f01;
+    background-color: white;
+    border-radius: 7px;
+}
+
+.pagination_li button:hover{
+    background-color: #be2126;
+    color: white;
+    cursor: pointer;
+}
+

@@ -61,20 +61,20 @@ function Home() {
             <header>
                 
                 <Link to="/">
-                    <div className={`${S.logo}`}>/</div> {/* logo del home */}
+                    <div className={`${S.logo}`}></div> {/* logo del home */}
                 </Link>
 
                 <div className={S.container_left}>
                     <SearchBar />
                     <div className={S.container_filters}>
                         <select onChange={handleOrderByName}>
-                            <option disabled defaultValue selected>Alphabetical</option>
+                            <option disabled defaultValue>Alphabetical</option>
                             <option value="A-Z">A - Z</option>
                             <option value="Z-A">Z - A</option>
                         </select>
 
                         <select onChange={handleOrderByPopulation}>
-                            <option disabled defaultValue selected>Population</option>
+                            <option disabled defaultValue>Population</option>
                             <option value="max-p">max population</option>
                             <option value="min-p">min population</option>
                         </select>
@@ -87,7 +87,7 @@ function Home() {
 
                 <div className={S.container_right}>
                         <Link to="/add-activity">
-                            <button>new activity</button>
+                            <button className={S.button_to_new_country}>New activity</button>
                         </Link>
                 </div>
             </header>

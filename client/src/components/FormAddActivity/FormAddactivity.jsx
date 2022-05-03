@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllCountries, postActivity } from "../../redux/actions";
+// import S from "../FormAddActivity/FormAddActivity.module.css";
 
 export default function FormAddActivity() {
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export default function FormAddActivity() {
         season: "",
         countries_id: [],
     });
-    // al cargar el compnente muestra los mensajes de error
+    // al cargar el componente muestra los mensajes de error
     const [errorForm, setErrorForm] = useState({
         name: "this field is required",
         countries: "select at least one country",
