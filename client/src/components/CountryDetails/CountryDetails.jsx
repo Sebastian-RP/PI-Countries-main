@@ -21,7 +21,8 @@ export default function CountryDetails() {
             <Link to="/home">
                 <button>Go to home</button>
             </Link>
-            <img src={details[0]?.img_flag} alt={details[0]?.name}/>
+            {/* <img src={details[0]?.img_flag} alt={details[0]?.img_flag}/> */}
+            <img src={details[0]?.img_flag} alt={details[0]?.img_flag}/>
             <h2>{details[0]?.name}</h2>
             <h1>{details[0]?.id}</h1>
             <h2>{details[0]?.continent}</h2>

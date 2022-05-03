@@ -1,0 +1,11 @@
+.pagination_nav{
+}
+
+.pagination_ul{}
+
+.pagination_li{
+    list-style: none;
+    float: left;
+    margin: 0.2rem;
+    text-align: center;
+}

@@ -23,7 +23,8 @@ const getApiData = async() => {
         return{
             id: country.cca3,
             name: country.name.common,
-            img_flag: country.flags[0],
+            // img_flag: country.flags[0],
+            img_flag: country.flags[1],
             continent: country.continents[0],
             capital: capitalName,
             subregion: country.subregion,

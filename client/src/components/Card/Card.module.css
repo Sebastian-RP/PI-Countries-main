@@ -1,3 +1,29 @@
+a{
+    text-decoration: none;
+}
+
+.card_container{
+    font-size: 0.8rem;
+    height: 240px;
+    background-color: rgba(236, 188, 72, 0.9);
+    color: #501f01;
+    padding: 0.4rem 1rem 0 1rem;
+    border-radius: 10px;
+}
+
+.image_container img{
+    max-width: 175px;
+}
+
+
 .flag_image{
     height: 120px;
+}
+
+.text_container{
+    max-width: 175px;
+}
+
+.text_container h2:nth-child(1){
+    color: white;
 }

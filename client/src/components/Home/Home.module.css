@@ -1,3 +1,20 @@
-.container_filters{
-    color: purple;
+header{
+
+}
+
+header .logo{
+    
+}
+
+.cards_pagination_container{
+    margin: 0 10%;
+}
+
+.countries_container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5% 0;
+    justify-items: center;
+    padding: 2rem 0 2rem 0;
+    margin-bottom: 3.9rem;
 }
