@@ -8,6 +8,7 @@ import Card from "../Card/Card";
 import ContinentFilter from "../Continentfilter/Continentfilter";
 import ActivityFilter from "../ActivityFilter/ActivityFilter";
 import Pagination from "../Pagination/Pagination";
+import Loading from "../Loading/Loading";
 
 import {
     getAllCountries, 
@@ -68,13 +69,13 @@ function Home() {
                     <SearchBar />
                     <div className={S.container_filters}>
                         <select onChange={handleOrderByName}>
-                            <option disabled defaultValue>Alphabetical</option>
+                            <option disabled defaultValue selected>Alphabetical</option>
                             <option value="A-Z">A - Z</option>
                             <option value="Z-A">Z - A</option>
                         </select>
 
                         <select onChange={handleOrderByPopulation}>
-                            <option disabled defaultValue>Population</option>
+                            <option disabled defaultValue selected>Population</option>
                             <option value="max-p">max population</option>
                             <option value="min-p">min population</option>
                         </select>
@@ -93,26 +94,32 @@ function Home() {
             </header>
 
             <hr />
+            {
+                !currentCountries[0]
+                    ? <Loading />
+                    :   
+                    <div className={S.cards_pagination_container}>
+                        <div className={S.countries_container}>
+                        {
+                            currentCountries.map((el) => {
+                                return(
+                                    <div key={el.id}>
+                                        <Link to={`/country-detail/${el.id}`}>
+                                            {
+                                                <Card key={el.id} imgFlag={el.img_flag} nameCountry={el.name} continent={el.continent}/>
+                                            }
+                                        </Link>
+                                    </div>
+                                )
+                            })
+                        }
+                        </div>
 
-            <div className={S.cards_pagination_container}>
-                <div className={S.countries_container}>
-                    {
-                        currentCountries.map((el) => {
-                            return(
-                                <div key={el.id}>
-                                    <Link to={`/country-detail/${el.id}`}>
-                                        {
-                                            <Card key={el.id} imgFlag={el.img_flag} nameCountry={el.name} continent={el.continent}/>
-                                        }
-                                    </Link>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+                        <Pagination className={S.pagination_container} coutriesPerPage={countriesPerPage} allCountries={countries.length} pagination={pagination}/>
+                    </div>
+            }
 
-                <Pagination className={S.pagination_container} coutriesPerPage={countriesPerPage} allCountries={countries.length} pagination={pagination}/>
-            </div>
+            
         </div>
     )
 }

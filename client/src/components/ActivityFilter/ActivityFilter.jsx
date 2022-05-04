@@ -14,7 +14,7 @@ export default function ActivityFilter({allActivities}) {
 
     return(
         <select onChange={handleFilterByActivity}>
-        <option value="" disabled defaultValue>
+        <option value="" disabled defaultValue selected>
             Activities
         </option>
         {

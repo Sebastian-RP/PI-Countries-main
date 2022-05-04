@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getByID } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import S from "../CountryDetails/CountryDetails.module.css"
+import Loading from "../Loading/Loading";
 
 export default function CountryDetails() {
   const dispatch = useDispatch();
@@ -13,14 +14,20 @@ export default function CountryDetails() {
     dispatch(getByID(id));
   }, [dispatch, id]);
 
-  const details = useSelector((state) => state.details);
+  let details = useSelector((state) => state.details);
+  console.log("andaamos ruleta");
   console.log(details);
+
+  const handleReset = () => {
+    details = [];
+    console.log(details);
+  }
 
   return (
     <div className={S.global_container}>
         <div className={S.cotainer_link}>
           <Link to="/home" className={S.link_home}>
-            <button className={S.detail_button_home}>Go to home</button>
+            <button className={S.detail_button_home} onClick={handleReset}>Go to home</button>
           </Link>
         </div>
         <div className={S.main_container}>
@@ -38,7 +45,7 @@ export default function CountryDetails() {
                 <h3>Id: {details[0].id}</h3>
               </div>
               : 
-              ""
+              <Loading />
           }
           <div className={S.right_container}>
               {

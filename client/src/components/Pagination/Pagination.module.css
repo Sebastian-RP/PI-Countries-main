@@ -18,7 +18,7 @@
 
 .button_go_pages:hover{
     cursor: pointer;
-    background-color: #ecbc48;
+    background-color: #be2126;
     color: white;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .pagination_li button:hover{
-    background-color: #be2126;
+    background-color: #ecbc48;
     color: white;
     cursor: pointer;
 }

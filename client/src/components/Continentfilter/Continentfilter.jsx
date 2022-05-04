@@ -7,7 +7,7 @@ export default function ContinentFilter() {
     
     const dispatch = useDispatch();
 
-    const allContinents = ["All", "Africa", "Antarctica", "Asia", "Europe", "Oceania", "North America", "South America"];
+    const allContinents = ["All continents", "Africa", "Antarctica", "Asia", "Europe", "Oceania", "North America", "South America"];
 
     const handleFilterByContinent = (e) => {
         e.preventDefault();
