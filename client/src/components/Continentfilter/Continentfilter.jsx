@@ -7,8 +7,6 @@ export default function ContinentFilter() {
     
     const dispatch = useDispatch();
 
-    // const [seletedCont, setSelectedCont] = useState("");
-
     const allContinents = ["All", "Africa", "Antarctica", "Asia", "Europe", "Oceania", "North America", "South America"];
 
     const handleFilterByContinent = (e) => {
@@ -19,7 +17,7 @@ export default function ContinentFilter() {
 
     return (
         <select onChange={handleFilterByContinent}>
-        <option value="" disabled defaultValue selected>
+        <option value="" disabled defaultValue>
             Continents
         </option>
             {

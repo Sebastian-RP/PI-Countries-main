@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllCountries, postActivity } from "../../redux/actions";
-// import S from "../FormAddActivity/FormAddActivity.module.css";
+import S from "../FormAddActivity/FormAddActivity.module.css";
 
 export default function FormAddActivity() {
     const dispatch = useDispatch();
@@ -26,7 +26,6 @@ export default function FormAddActivity() {
     
 
     useEffect(() => {
-        console.log(errorForm.countries);
         if (errorForm.name.length > 0 || errorForm.countries.length > 0) {
             setEnableButt(true)
         }
@@ -40,7 +39,6 @@ export default function FormAddActivity() {
     }, [dispatch]);
 
     useEffect(() => {
-        console.log(formValues.countries_id.length);
         if (formValues.countries_id.length < 1) {
             setErrorForm({
                 ...errorForm,
@@ -127,23 +125,24 @@ export default function FormAddActivity() {
 
     return(
         <div>
-            <h3>hola form</h3>
-            <Link to="/home">
-                <button>pal home bb</button>
-            </Link>
-            <div>
+            <div className={S.link_container}>
+                <Link to="/home">
+                    <button>Home</button>
+                </Link>
+            </div>
+            <div className={S.form_container}>
                 <form action="" id="form" onSubmit={handleSubmit}>
                     
                     <div>
-                        <input type="text" name="name" value={formValues.name} autoComplete="off" onChange={(e) => handleChange(e)} placeholder="Name..."/>
+                        <input type="text" className={S.input_name} name="name" value={formValues.name} autoComplete="off" onChange={(e) => handleChange(e)} placeholder="Name..."/>
+
+                        <div className={S.error_message}>{errorForm.name ? <h3>{errorForm.name}</h3> : <h3>{""}</h3>}</div>
                     </div>
-                    <div>{errorForm.name ? <h3>{errorForm.name}</h3> : <h3>{""}</h3>}</div>
-                    <div></div>
-                    <div>
+                    
                         <div>
-                            <label htmlFor="fDifficulty">Difficulty</label>
+                            <label htmlFor="fDifficulty">Difficulty: </label>
                             <select name="difficulty" id="fDifficulty" onChange={(e) => handleChange(e)}>
-                                <option value=""  defaultValue>1 - 5</option>
+                                <option value=""  disabled defaultValue selected>1 - 5</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -152,9 +151,9 @@ export default function FormAddActivity() {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="fDuration">Duration</label>
+                            <label htmlFor="fDuration">Duration: </label>
                             <select name="duration" id="fDuration" onChange={(e) => handleChange(e)}>
-                                <option value=""  defaultValue>Hours</option>
+                                <option value=""  disabled defaultValue selected>Hours</option>
                                 {
                                     hours.map((h) => {
                                         return(
@@ -165,9 +164,9 @@ export default function FormAddActivity() {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="fSeason">Season</label>
+                            <label htmlFor="fSeason">Season: </label>
                             <select id="fSeason" name="season" onChange={(e) => handleChange(e)}>
-                                <option value="">Select</option>
+                                <option value="" disabled defaultValue selected>Select</option>
                                 <option value="summer">summer</option>
                                 <option value="autumn">autumn</option>
                                 <option value="winter">winter</option>
@@ -175,7 +174,7 @@ export default function FormAddActivity() {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="fCountries">Activity</label>
+                            <label htmlFor="fCountries">Activity: </label>
                             <select id="fCountries" name="countries" onChange={(e) => handleSelectCount(e)}>
                                 {
                                     allCountries.map(coun => {
@@ -185,14 +184,14 @@ export default function FormAddActivity() {
                                     })
                                 }
                             </select>
+                            <div className={S.error_message}>{errorForm.countries ? <h3>{errorForm.countries}</h3> : <h3>{""}</h3>}</div>
                         </div>
-                        <div>{errorForm.countries ? <h3>{errorForm.countries}</h3> : <h3>{""}</h3>}</div>
 
                         <div>
                             <button type="submit" disabled={enableButt} form="form">Add new activity</button>
                         </div>
 
-                    </div>
+                    
                 </form>
             </div>
 
