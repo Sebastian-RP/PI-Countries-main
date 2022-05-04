@@ -127,7 +127,9 @@ export default function FormAddActivity() {
         <div>
             <div className={S.link_container}>
                 <Link to="/home">
-                    <button>Home</button>
+                    <button className={S.button_home}>
+                        <span>Home</span>
+                    </button>
                 </Link>
             </div>
             <div className={S.form_container}>
@@ -188,26 +190,26 @@ export default function FormAddActivity() {
                         </div>
 
                         <div>
-                            <button type="submit" disabled={enableButt} form="form">Add new activity</button>
+                            <button type="submit" className={S.button_create_activity} disabled={enableButt} form="form">Add new activity</button>
                         </div>
 
                     
                 </form>
             </div>
 
-            <div>
-                <div>
+            <div className={S.countries_selected}>
+                <div className={S.title_countries}>
                     <h2>Countries</h2>
                 </div>
-                <div>
+                <ul className={S.ul_element}>
                     {
                         formValues.countries_id.map(el => 
-                        <div key={el} onClick={() => handleDelete(el)}>
+                        <li key={el} onClick={() => handleDelete(el)}>
                             <p>{el}</p>
-                        </div>    
+                        </li>    
                         )
                     }
-                </div>
+                </ul>
             </div>
         </div>
     )
