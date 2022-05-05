@@ -61,7 +61,6 @@
 
 .button_home:hover::after {
 	transform: scale(400);
-	/* background: #ecbc48; */
 }
 
 .form_container{
@@ -79,6 +78,7 @@ form{
     border-radius: 10px;
     border: 2px solid #f9910c; 
     background-color: #f5f3ef;
+    box-shadow: 5px 3px 5px 0.5px rgba(0,0,0,0.6);
 }
 
 .input_name{
@@ -101,6 +101,7 @@ form select{
     border: none;
     background-color: #ecbc48;
     color: #f5f3ef;
+    box-shadow: 5px 3px 5px 0.5px rgba(0,0,0,0.6);
 }
 
 form select:hover{
@@ -146,6 +147,7 @@ form select:hover{
 
 .title_countries{
     color: #501f01;
+    margin-top: 0.7rem;
 }
 
 .countries_selected{

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllCountries, postActivity } from "../../redux/actions";
 import S from "../FormAddActivity/FormAddActivity.module.css";
+import Loading from "../Loading/Loading";
 
 export default function FormAddActivity() {
     const dispatch = useDispatch();
@@ -133,68 +134,72 @@ export default function FormAddActivity() {
                 </Link>
             </div>
             <div className={S.form_container}>
-                <form action="" id="form" onSubmit={handleSubmit}>
-                    
-                    <div>
-                        <input type="text" className={S.input_name} name="name" value={formValues.name} autoComplete="off" onChange={(e) => handleChange(e)} placeholder="Name..."/>
+                {
+                !allCountries[0]
+                    ?  
+                    <Loading />
+                    :
+                    <form action="" id="form" onSubmit={handleSubmit}>
+                        
+                        <div>
+                            <input type="text" className={S.input_name} name="name" value={formValues.name} autoComplete="off" onChange={(e) => handleChange(e)} placeholder="Name..."/>
 
-                        <div className={S.error_message}>{errorForm.name ? <h3>{errorForm.name}</h3> : <h3>{""}</h3>}</div>
-                    </div>
-                    
-                        <div>
-                            <label htmlFor="fDifficulty">Difficulty: </label>
-                            <select name="difficulty" id="fDifficulty" onChange={(e) => handleChange(e)}>
-                                <option value=""  disabled defaultValue selected>1 - 5</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                            <div className={S.error_message}>{errorForm.name ? <h3>{errorForm.name}</h3> : <h3>{""}</h3>}</div>
                         </div>
-                        <div>
-                            <label htmlFor="fDuration">Duration: </label>
-                            <select name="duration" id="fDuration" onChange={(e) => handleChange(e)}>
-                                <option value=""  disabled defaultValue selected>Hours</option>
-                                {
-                                    hours.map((h) => {
-                                        return(
-                                            <option key={h} value={h}>{h}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                        </div>
-                        <div>
-                            <label htmlFor="fSeason">Season: </label>
-                            <select id="fSeason" name="season" onChange={(e) => handleChange(e)}>
-                                <option value="" disabled defaultValue selected>Select</option>
-                                <option value="summer">summer</option>
-                                <option value="autumn">autumn</option>
-                                <option value="winter">winter</option>
-                                <option value="spring">spring</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label htmlFor="fCountries">Activity: </label>
-                            <select id="fCountries" className={S.activity_select} name="countries" onChange={(e) => handleSelectCount(e)}>
-                                {
-                                    allCountries.map(coun => {
-                                        return(
-                                            <option key={coun.id} value={coun.id}>{coun.name}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                            <div className={S.error_message}>{errorForm.countries ? <h3>{errorForm.countries}</h3> : <h3>{""}</h3>}</div>
-                        </div>
+                        
+                            <div>
+                                <label htmlFor="fDifficulty">Difficulty: </label>
+                                <select name="difficulty" id="fDifficulty" onChange={(e) => handleChange(e)}>
+                                    <option value=""  disabled defaultValue selected>1 - 5</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label htmlFor="fDuration">Duration: </label>
+                                <select name="duration" id="fDuration" onChange={(e) => handleChange(e)}>
+                                    <option value=""  disabled defaultValue selected>Hours</option>
+                                    {
+                                        hours.map((h) => {
+                                            return(
+                                                <option key={h} value={h}>{h}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div>
+                                <label htmlFor="fSeason">Season: </label>
+                                <select id="fSeason" name="season" onChange={(e) => handleChange(e)}>
+                                    <option value="" disabled defaultValue selected>Select</option>
+                                    <option value="summer">summer</option>
+                                    <option value="autumn">autumn</option>
+                                    <option value="winter">winter</option>
+                                    <option value="spring">spring</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label htmlFor="fCountries">Activity: </label>
+                                <select id="fCountries" className={S.activity_select} name="countries" onChange={(e) => handleSelectCount(e)}>
+                                    {
+                                        allCountries.map(coun => {
+                                            return(
+                                                <option key={coun.id} value={coun.id}>{coun.name}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                                <div className={S.error_message}>{errorForm.countries ? <h3>{errorForm.countries}</h3> : <h3>{""}</h3>}</div>
+                            </div>
 
-                        <div>
-                            <button type="submit" className={S.button_create_activity} disabled={enableButt} form="form">Add new activity</button>
-                        </div>
-
-                    
-                </form>
+                            <div>
+                                <button type="submit" className={S.button_create_activity} disabled={enableButt} form="form">Add new activity</button>
+                            </div>
+                    </form>
+                }
             </div>
 
             <div className={S.countries_selected}>
