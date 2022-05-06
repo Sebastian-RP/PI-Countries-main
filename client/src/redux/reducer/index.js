@@ -104,7 +104,7 @@ const rootReducer = (state = initialState, action) => {
                 allCountries: filterContinent
             }
         case "FILTER_BY_ACTIVITY":
-            //
+            //reset para mostrar todas las actividdes
             if (action.payload === "All") {
                 return{
                     ...state,

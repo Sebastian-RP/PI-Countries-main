@@ -19,7 +19,6 @@ import {
 
 function Home() {
     
-
     const dispatch = useDispatch();
     const allActivities = useSelector(state => state.allActivities);
     const countries = useSelector(state => state.countries)
@@ -41,6 +40,11 @@ function Home() {
     const pagination = (pageNumber) => {
         setcurrentPage(pageNumber);
     }
+
+    //al cambiar el contenido de countries se establezca que inicie en la primer pagina
+    useEffect(() => {
+        setcurrentPage(1);
+    }, [countries])
 
     useEffect(() => {
         dispatch(getAllCountries());
