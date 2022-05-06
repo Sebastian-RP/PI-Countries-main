@@ -18,6 +18,8 @@ import {
 } from "../../redux/actions"
 
 function Home() {
+    
+
     const dispatch = useDispatch();
     const allActivities = useSelector(state => state.allActivities);
     const countries = useSelector(state => state.countries)
@@ -57,6 +59,7 @@ function Home() {
         setUpdate(e.target.value);
     };
 
+    document.title = "Home";
     return(
         <div className={""}>
             <header>
@@ -79,10 +82,10 @@ function Home() {
                             <option value="max-p">max population</option>
                             <option value="min-p">min population</option>
                         </select>
-
-                        <ActivityFilter allActivities={allActivities} />
                         
                         <ContinentFilter />
+
+                        <ActivityFilter allActivities={allActivities} />
                     </div>
                 </div>
 
@@ -103,6 +106,15 @@ function Home() {
                         {
                             currentCountries.map((el) => {
                                 return(
+                                    el.id === "error404" ?//si no llega a existir el pais buscado
+                                    <div key={el.id}>
+                                        <Link to={`/home`} onClick={() => window.location.reload(false)}>
+                                            {
+                                                <Card key={el.id} imgFlag={el.img_flag} nameCountry={el.name} continent={el.continent}/>
+                                            }
+                                        </Link>
+                                    </div>
+                                    :
                                     <div key={el.id}>
                                         <Link to={`/country-detail/${el.id}`}>
                                             {

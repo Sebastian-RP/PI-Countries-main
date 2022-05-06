@@ -1,9 +1,13 @@
 import axios from "axios";
+import imageError404 from "../../components/Home/images/not-found-404.png";
 const urlApi = "http://localhost:3001";
 
 export function getAllCountries() {
     return async function(dispatch) {
         let json = await axios.get(`${urlApi}/countries`);
+        console.log("action");
+        console.log(json);
+        console.log("------");
         return dispatch({
             type: "GET_ALL_COUNTRIES",
             payload: json.data
@@ -30,7 +34,11 @@ export function getCountryByName(name) {
                 payload: json.data,
             })
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            return dispatch({
+                type: "GET_COUNTRY_BY_NAME",
+                payload: [{id: "error404", name: "COUNTRY DON'T FOUND", img_flag: imageError404}],
+            })
         }
     }
 }
@@ -46,6 +54,13 @@ export function getByID(idCountry) {
         } catch (error) {
             console.log(error);
         }
+    }
+}
+
+export function resetDetailById() {
+    return{
+        type: "RESET_DETAIL_BY_ID",
+        payload: [],
     }
 }
 

@@ -124,6 +124,7 @@ export default function FormAddActivity() {
 
     const allCountries = useSelector((state) => state.totalData)
 
+    document.title = "Form";
     return(
         <div>
             <div className={S.link_container}>

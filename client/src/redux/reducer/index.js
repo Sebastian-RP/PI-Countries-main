@@ -22,6 +22,8 @@ const rootReducer = (state = initialState, action) => {
                 allActivities: action.payload
             }
         case "GET_COUNTRY_BY_NAME":
+            console.log("reducer de name");
+            console.log(!!action.payload);
             return{
                 ...state,
                 countries: action.payload
@@ -30,6 +32,11 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 details: action.payload,
+            }
+        case "RESET_DETAIL_BY_ID":
+            return{
+                ...state,
+                details: action.payload
             }
         case "ORDER_BY_NAME":  
             console.log("reducer");

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import S from "../LandingPage/LandingPage.module.css";
 
 function LandingPage() {
+
+    document.title = "Welcome";
     return(
         <div className={S.main_container}>
             <div className={S.elements_container}>
