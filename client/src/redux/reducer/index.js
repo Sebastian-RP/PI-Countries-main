@@ -19,14 +19,12 @@ const rootReducer = (state = initialState, action) => {
         case "GET_ALL_ACTIVITIES":
             return{
                 ...state,
-                allActivities: action.payload
+                allActivities: action.payload,
             }
         case "GET_COUNTRY_BY_NAME":
-            console.log("reducer de name");
-            console.log(!!action.payload);
             return{
                 ...state,
-                countries: action.payload
+                countries: action.payload,
             }
         case "GET_COUNTRY_BY_ID":
             return{
@@ -106,6 +104,13 @@ const rootReducer = (state = initialState, action) => {
                 allCountries: filterContinent
             }
         case "FILTER_BY_ACTIVITY":
+            //
+            if (action.payload === "All") {
+                return{
+                    ...state,
+                    countries: state.totalData
+                }
+            }
             //esto podria funcionar pero se debe parsear el action.payload
             // const filteredCount = state.allCountries.filter(count => count.activities.find(act => act.id === action.payload))
             const filteredCount = state.allCountries.filter(el => el.activities[0]);

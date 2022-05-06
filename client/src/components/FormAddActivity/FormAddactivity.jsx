@@ -126,7 +126,7 @@ export default function FormAddActivity() {
 
     document.title = "Form";
     return(
-        <div>
+        <div className={S.global_container}>
             <div className={S.link_container}>
                 <Link to="/home">
                     <button className={S.button_home}>

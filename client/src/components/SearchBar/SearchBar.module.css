@@ -11,7 +11,13 @@
     height: 80%;
     width: 75%;
     font-size: 1.2rem;
-    color: #501f01;
+    color: #321401;
+    background-color: #dde1dd;
+    border-top-left-radius: 10px;
+}
+
+.input_search:focus{
+    background-color: white;
 }
 
 .buton_search{

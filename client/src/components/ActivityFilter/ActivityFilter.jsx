@@ -17,6 +17,7 @@ export default function ActivityFilter({allActivities}) {
         <option value="" disabled defaultValue selected>
             Activities
         </option>
+        <option value="All">all countries</option>
         {
             allActivities.map(act => 
                 <option key={act.name} value={act.id}>{act.name}</option>    

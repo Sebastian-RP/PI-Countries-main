@@ -5,9 +5,6 @@ const urlApi = "http://localhost:3001";
 export function getAllCountries() {
     return async function(dispatch) {
         let json = await axios.get(`${urlApi}/countries`);
-        console.log("action");
-        console.log(json);
-        console.log("------");
         return dispatch({
             type: "GET_ALL_COUNTRIES",
             payload: json.data

@@ -61,7 +61,7 @@ function Home() {
 
     document.title = "Home";
     return(
-        <div className={""}>
+        <div className={S.global_container}>
             <header>
                 
                 <Link to="/">
@@ -96,7 +96,6 @@ function Home() {
                 </div>
             </header>
 
-            <hr />
             {
                 !currentCountries[0]
                     ? <Loading />

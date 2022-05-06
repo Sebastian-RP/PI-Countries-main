@@ -11,13 +11,11 @@ export default function CountryDetails() {
   let { id } = useParams();
 
   let details = useSelector((state) => state.details);
-  console.log("andaamos ruleta");
-  console.log(details);
 
   //trae los detalles segun el id del pais 
   useEffect(() => {
     dispatch(getByID(id));
-    
+
   }, [dispatch, id]);
 
   const handleReset = () => {
