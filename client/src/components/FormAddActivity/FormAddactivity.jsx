@@ -113,6 +113,12 @@ export default function FormAddActivity() {
             season: "",
             countries_id: [],
         });
+        //reset del formulario
+        console.log(e);
+        e.target[1].value = ""; //resetear difficulty
+        e.target[2].value = "";  //resetear duration
+        e.target[3].value = "";  //resetear season
+        e.target[4].value = "";  //resetear countries
     }
 
     const handleDelete = (countryDelete) => {
