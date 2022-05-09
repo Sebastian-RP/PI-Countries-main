@@ -133,7 +133,6 @@ function Home() {
                         <Pagination className={S.pagination_container} coutriesPerPage={countriesPerPage} allCountries={countries.length} pagination={pagination}/>
                     </div>
             }
-
             
         </div>
     )
