@@ -185,7 +185,7 @@ export default function FormAddActivity() {
                             <div>
                                 <label htmlFor="fCountries">Country: </label>
                                 <select id="fCountries" className={S.activity_select} name="countries" onChange={(e) => handleSelectCount(e)}>
-                                    <option value="">All countries</option>
+                                    <option value="" disabled selected defaultValue>All countries</option>
                                     {
                                         allCountries.map(coun => {
                                             return(
