@@ -12,6 +12,10 @@ a{
     box-shadow: -3px 4px 3px 2px rgba(0,0,0,0.76);
 }
 
+.card_container:hover{
+    background-color: rgba(236, 188, 72, 0.4);
+}
+
 .image_container img{
     max-width: 175px;
 }

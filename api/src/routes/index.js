@@ -33,9 +33,10 @@ const getApiData = async() => {
         }
     });
 
+    //precargamos todos los paises de la api a la base de datos
     for (const elem of apiInfo) {
         let [countryX, created] = await Country.findOrCreate({
-            where: { id: elem.id },
+            where: { id: elem.id }, //si el pais a ingresar no existe le agregamos los siguientes datos
             defaults: {
                 id: elem.id,
                 name: elem.name,
@@ -57,7 +58,7 @@ const getFromDb = async() => {
     //relacion entre modelo Country y modelo Activity
     const data = await Country.findAll({
         attributes: { exclude: ['createdAt', 'updatedAt', 'country_activity']},
-        include: { 
+        include: {
             model: Activity,
             attributes: { exclude: ['createdAt', 'updatedAt'] },
             through: {
@@ -69,6 +70,12 @@ const getFromDb = async() => {
     return data;
 };
 
+//tetsing points
+router.get("/test", async(req, res) => {
+    console.log("apiInfo");
+    console.log(apiInfo);
+})
+
 //end-points
 router.get("/countries" , async(req, res) => {
     const { name } = req.query;
@@ -78,7 +85,7 @@ router.get("/countries" , async(req, res) => {
         filteredCountry.length ? res.status(200).send(filteredCountry) : res.status(404).send("Country not found");
     }else{ 
         res.status(200).send(myDB);
-    } 
+    }
 });
 
 router.get("/countries/:idCountry", async(req, res) => {
@@ -122,12 +129,17 @@ router.post("/activity", async(req, res) => {
         }
     });
 
-    const countryAsso = await Country.findAll( { where: {id: countries_id} } );
+    const allDataCountries = await Country.findAll( { where: {id: countries_id} } );
+    //contiene la info de los paises 
 
-    for (let value of countryAsso) {
-        await value.addActivity(activityX.dataValues.id);
+    for (let value of allDataCountries) { 
+        console.log("******  value  *******");
+        console.log(value);
+        //values contiene el total de data de los paises
+        await value.addActivity(activityX.dataValues.id);//fooInstance.addbar(); 
+        //vinculo instancia del pais seleccionada a la tabla de actividad por medio del id de la tabla
     }
-
+ 
     res.status(200).send("activity created succesfully");
 });
 
