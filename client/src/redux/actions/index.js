@@ -93,6 +93,5 @@ export const postActivity = (payload) => {
     return async function() {
         const res = await axios.post("http://localhost:3001/activity", payload);
         return res;
-    //   return response.data;
     };
   };

@@ -66,15 +66,8 @@ const getFromDb = async() => {
             },
         }
     })
-
     return data;
 };
-
-//tetsing points
-router.get("/test", async(req, res) => {
-    console.log("apiInfo");
-    console.log(apiInfo);
-})
 
 //end-points
 router.get("/countries" , async(req, res) => {
@@ -132,9 +125,7 @@ router.post("/activity", async(req, res) => {
     const allDataCountries = await Country.findAll( { where: {id: countries_id} } );
     //contiene la info de los paises 
 
-    for (let value of allDataCountries) { 
-        console.log("******  value  *******");
-        console.log(value);
+    for (let value of allDataCountries) {
         //values contiene el total de data de los paises
         await value.addActivity(activityX.dataValues.id);//fooInstance.addbar(); 
         //vinculo instancia del pais seleccionada a la tabla de actividad por medio del id de la tabla

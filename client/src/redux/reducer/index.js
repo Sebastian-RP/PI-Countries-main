@@ -58,7 +58,6 @@ const rootReducer = (state = initialState, action) => {
                         }
                         return 0;
                     })
-
                     console.log(sortedName);
             return{ 
                 ...state,
