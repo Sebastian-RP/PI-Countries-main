@@ -14,7 +14,8 @@ import {
     getAllCountries, 
     getAllActivities,
     orderByName,
-    orderByPopulation
+    orderByPopulation,
+    orderByArea
 } from "../../redux/actions"
 
 function Home() {
@@ -23,25 +24,25 @@ function Home() {
     const allActivities = useSelector(state => state.allActivities);
     const countries = useSelector(state => state.countries)
 
-    console.log(countries);
+    // console.log(countries);
 
     // eslint-disable-next-line no-unused-vars
     const [update, setUpdate] = useState("");
     const [currentPage, setcurrentPage] = useState(1);
     const countriesPerPage = 10;
-    const lastIndex = currentPage * countriesPerPage; //2 * 10 - 1 = 19
-    const firstIndex = lastIndex - countriesPerPage; //20 - 10 - 1= 9
-    //si la pagina actual es 1 muestre los primeros nueve, si no muestre los siguientes 10
+    const lastIndex = currentPage * countriesPerPage; //2 * 10 = 20 **  2 * 10 -1 = 19
+    const firstIndex = lastIndex - countriesPerPage;  //20 - 10= 10  ** 20 - 10 -1 = 9
+    //si la pagina actual es 1 muestre los primeros nueve paises, si no muestre los siguientes 10
     let currentCountries;
     currentPage === 1 
         ? currentCountries = countries.slice(0, 9)
-        : currentCountries = countries.slice(firstIndex-1, lastIndex-1);
+        : currentCountries = countries.slice(firstIndex-1, lastIndex-1); //slice(9, 19) = 9, 10, 11,...18
 
     const pagination = (pageNumber) => {
         setcurrentPage(pageNumber);
     }
 
-    //al cambiar el contenido de countries se establezca que inicie en la primer pagina
+    //al cambiar el contenido del arreglo countries se establezca que inicie en la primer pagina
     useEffect(() => {
         setcurrentPage(1);
     }, [countries])
@@ -62,6 +63,12 @@ function Home() {
         dispatch(orderByPopulation(e.target.value));
         setUpdate(e.target.value);
     };
+
+    const handleOrderByArea = (e) => {
+        e.preventDefault();
+        dispatch(orderByArea(e.target.value))
+        setUpdate(e.target.value);
+    }
 
     document.title = "Home";
     return(
@@ -86,6 +93,13 @@ function Home() {
                             <option value="max-p">max population</option>
                             <option value="min-p">min population</option>
                         </select>
+
+                        {/*filtrar por area*/}
+                        {/* <select onChange={handleOrderByArea}>
+                            <option disabled defaultValue selected>area</option>
+                            <option value="min-area">min-area</option>
+                            <option value="max-area">max-area</option>
+                        </select> */}
                         
                         <ContinentFilter />
 

@@ -15,7 +15,6 @@ export default function CountryDetails() {
   //trae los detalles segun el id del pais 
   useEffect(() => {
     dispatch(getByID(id));
-
   }, [dispatch, id]);
 
   const handleReset = () => {

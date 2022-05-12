@@ -26,5 +26,3 @@ export default function SearchBar() {
         </div>
     )
 }
-
-//solucionar problema en el submit

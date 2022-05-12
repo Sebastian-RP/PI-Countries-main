@@ -92,7 +92,6 @@ export default function FormAddActivity() {
         })
         validationform(e);
     }
-
     //seleccionar pais
     const handleSelectCount = (e) => {
         setFormValues({
@@ -100,6 +99,13 @@ export default function FormAddActivity() {
             countries_id: [...formValues.countries_id, e.target.value]
         })
         validationform(e);
+    }
+
+    const handleDelete = (countryDelete) => {
+        setFormValues({
+            ...formValues,
+            countries_id: formValues.countries_id.filter(count => count !== countryDelete)
+        })
     }
 
     const handleSubmit = (e) => {
@@ -120,14 +126,7 @@ export default function FormAddActivity() {
         e.target[4].value = "";  //resetear countries
     }
 
-    const handleDelete = (countryDelete) => {
-        setFormValues({
-            ...formValues,
-            countries_id: formValues.countries_id.filter(count => count !== countryDelete)
-        })
-    }
-
-    const allCountries = useSelector((state) => state.totalData)
+    const allCountries = useSelector((state) => state.totalData);
 
     document.title = "Form";
     return(

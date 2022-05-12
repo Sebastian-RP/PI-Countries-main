@@ -75,6 +75,13 @@ export function orderByPopulation(order) {
     }
 }
 
+export function orderByArea(order) {
+    return{
+        type: "ORDER_BY_AREA",
+        payload: order,
+    }
+}
+
 export function filterByContinent(continentName) {
     return{
         type: "FILTER_BY_CONTINENT",

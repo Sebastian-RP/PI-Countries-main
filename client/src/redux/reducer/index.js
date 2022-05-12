@@ -63,6 +63,32 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 countries: sortedName,
             };
+        case "ORDER_BY_AREA":
+            const sortedArea = action.payload === "min-area"
+                ? 
+                    state.totalData.sort((a, b) => {
+                        if(a.area > b.area){
+                            return 1;
+                        }
+                        if (b.area > a.area) {
+                            return -1
+                        }
+                        return 0;
+                    })
+                :  
+                    state.totalData.sort((a, b) => {
+                        if(a.area > b.area){
+                            return -1;
+                        }
+                        if (b.area > a.area) {
+                            return 1
+                        }
+                        return 0;
+                    })
+            return{
+                ...state,
+                countries: sortedArea
+            }
         case "ORDER_BY_POPULATION":
             const sortedPopulation = action.payload === "min-p"
                 ? state.allCountries.sort((a, b) => {
@@ -112,8 +138,7 @@ const rootReducer = (state = initialState, action) => {
             }
             //esto podria funcionar pero se debe parsear el action.payload
             // const filteredCount = state.allCountries.filter(count => count.activities.find(act => act.id === action.payload))
-            const filteredCount = state.allCountries.filter(el => el.activities[0]);
-            console.log(action.payload);
+            const filteredCount = state.allCountries.filter(el => el.activities[0]); //validamos que el pais tenga actividad asociada
             let selectedCount = [];
             filteredCount.forEach(elem => {
                 for (let i = 0; i < elem.activities.length; i++) {
